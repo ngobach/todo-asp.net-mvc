@@ -33,7 +33,7 @@ namespace MvcTodo.Models
         public DateTime Updated { get; set; }
     }
 
-    public class MySeeder : System.Data.Entity.DropCreateDatabaseAlways<MyDbContext>
+    public class MySeeder : System.Data.Entity.CreateDatabaseIfNotExists<MyDbContext>
     {
         protected override void Seed(MyDbContext context)
         {
