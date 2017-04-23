@@ -8,9 +8,12 @@ namespace MvcTodo.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        [HttpGet]
         public ActionResult Index()
+        {
+            return Content(String.Format("Connection string is: <br>{0}", new Models.MyDbContext().Database.Connection.ConnectionString));
+        }
+
+        public ActionResult Add()
         {
             using (var db = new Models.MyDbContext())
             {

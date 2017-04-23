@@ -155,7 +155,7 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Add.cshtml" />
     <Content Include="assets\.DS_Store" />
     <Content Include="assets\css\.DS_Store" />
     <Content Include="assets\fonts\.DS_Store" />
