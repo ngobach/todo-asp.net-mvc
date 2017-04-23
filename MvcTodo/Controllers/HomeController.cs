@@ -10,9 +10,19 @@ namespace MvcTodo.Controllers
     {
         // GET: Home
         [HttpGet]
-        public ActionResult Index(int count = 10)
+        public ActionResult Index()
         {
-            ViewBag.PrintCount = count;
+            using (var db = new Models.MyDbContext())
+            {
+                db.Tasks.Add(new Models.Task {
+                    Name = "The Name",
+                    Archived = false,
+                    Created = DateTime.Now,
+                    Updated = DateTime.Now
+                });
+                db.SaveChanges();
+                ViewBag.Count = db.Tasks.Count();
+            }
             return View();
         }
     }
