@@ -27,7 +27,7 @@
         $el.prop('checked') && $parent.addClass('checked');
     }  
     
-  , toggle: function () {    
+  , toggle: function () {
       var ch = 'checked'
         , $el = this.$element
         , $parent = $el.closest('.checkbox')
@@ -73,7 +73,7 @@
   }
   
   $.fn.checkbox.defaults = {
-    template: '<span class="icons"><span class="first-icon fa fa-square fa-base"></span><span class="second-icon fa fa-check-square fa-base"></span></span>'
+    template: '<span class="icons"><span class="first-icon fa fa-circle-o fa-base"></span><span class="second-icon fa fa-check-circle-o fa-base"></span></span>'
   }
 
 
