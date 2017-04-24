@@ -11,6 +11,9 @@ namespace MvcTodo
     {
         protected void Application_Start()
         {
+            //var db = new Models.MyDbContext();
+            //db.Tasks.RemoveRange(db.Tasks);
+            //db.SaveChanges();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

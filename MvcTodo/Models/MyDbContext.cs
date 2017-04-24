@@ -12,8 +12,7 @@ namespace MvcTodo.Models
         // 
         // If you wish to target a different database and/or database provider, modify the 'SampleModel' 
         // connection string in the application configuration file.
-        public MyDbContext()
-            : base("name=MyDbContext")
+        public MyDbContext() : base("name=MyDbContext")
         {
             Database.SetInitializer(new MySeeder());
         }
@@ -23,17 +22,8 @@ namespace MvcTodo.Models
 
         public DbSet<Task> Tasks { get; set; }
     }
-
-    public class Task
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool Archived { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
-    }
-
-    public class MySeeder : System.Data.Entity.CreateDatabaseIfNotExists<MyDbContext>
+    
+    public class MySeeder : CreateDatabaseIfNotExists<MyDbContext>
     {
         protected override void Seed(MyDbContext context)
         {
@@ -46,5 +36,14 @@ namespace MvcTodo.Models
             });
             base.Seed(context);
         }
+    }
+
+    public class Task
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool Archived { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Updated { get; set; }
     }
 }

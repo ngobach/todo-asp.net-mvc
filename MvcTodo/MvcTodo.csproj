@@ -142,8 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DemoController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,7 +154,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Home\Add.cshtml" />
     <Content Include="assets\.DS_Store" />
     <Content Include="assets\css\.DS_Store" />
     <Content Include="assets\fonts\.DS_Store" />
@@ -215,8 +213,9 @@
     <Content Include="bootstrap3\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\qlthuvien - Web Deploy.pubxml" />
-    <Content Include="Views\Demo\Index.cshtml" />
-    <Content Include="Views\Demo\MyView.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

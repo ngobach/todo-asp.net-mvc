@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Task>
+@{
+    ViewBag.Title = "All tasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (Model.Count() > 0)
+    {
+        <ul class="list-group">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item">@Html.DisplayFor(itemModel => item.Name)</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="well">
+            <h3 class="text-danger">There are no item yet.</h3>
+        </div>
+    }
+    @using (Html.BeginForm("Create", "Task", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <h5>Create new task</h5>
+        <div class="form-group">
+            <div class="col-sm-9">
+                @Html.TextBox("text", "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-3">
+                <input type="submit" value="Create" class="btn btn-block btn-success"/>
+            </div>
+        </div>
+    }
+</div>
