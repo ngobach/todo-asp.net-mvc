@@ -63,11 +63,21 @@ namespace MvcTodo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Truncate()
+        public ActionResult Truncate(bool archived = false)
         {
-            db.Tasks.RemoveRange(db.Tasks);
+            string alert;
+            if (archived)
+            {
+                alert = String.Format("{0} tasks removed", db.Tasks.Where(t => t.Archived).Count());
+                db.Tasks.RemoveRange(db.Tasks.Where(t => t.Archived));
+            }
+            else
+            {
+                alert = "Database truncated!";
+                db.Tasks.RemoveRange(db.Tasks);
+            }
             db.SaveChanges();
-            Session["alert"] = "Database truncated!";
+            Session["alert"] = alert;
             return RedirectToAction("Index");
         }
     }

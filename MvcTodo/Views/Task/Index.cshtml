@@ -11,14 +11,14 @@
     Session.Remove("alert");
 }
 <div class="container">
-    @if (Model.Count() > 0)
+    @if (Model.Any())
     {
         <ul class="list-group">
             @foreach (var item in Model)
             {
                 <li class="list-group-item">
                     <label class="checkbox checkbox-green">
-                        <input type="checkbox" class="toggler" data-toggle="checkbox" data-item="@Html.AttributeEncode(item.Id)" checked="@(item.Archived)">
+                        <input checked="@(item.Archived)" class="toggler" data-item="@Html.AttributeEncode(item.Id)" data-toggle="checkbox" type="checkbox">
                         @Html.DisplayFor(itemModel => item.Name)
                         <small class="pull-right label label-default">@Html.DisplayFor(itemModel => item.Created)</small>
                     </label>
@@ -33,37 +33,49 @@
         </div>
     }
 
-    @using (Html.BeginForm("Create", "Task", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("Create", "Task", FormMethod.Post, new {@class = "form-horizontal"}))
     {
         <h5>Create new task</h5>
         <div class="form-group">
             <div class="col-sm-10">
-                @Html.TextBox("text", "", new { @class = "form-control" })
+                @Html.TextBox("text", "", new {@class = "form-control"})
             </div>
             <div class="col-sm-2">
-                <input type="submit" value="Create" class="btn btn-block btn-success"/>
+                <input type="submit" value="Create" class="btn btn-block btn-success btn-fill"/>
             </div>
         </div>
     }
     <h4>God Mode</h4>
-    @using (Html.BeginForm("Truncate", "Task"))
-    {
-        <input type="submit" class="btn btn-block btn-danger" value="Truncate"/>
-    }
+    <div class="row">
+        <div class="col-sm-6">
+            @using (Html.BeginForm("Truncate", "Task"))
+            {
+                <input type="submit" class="btn btn-block btn-danger" value="Truncate"/>
+            }
+        </div>
+        <div class="col-sm-6">
+            @using (Html.BeginForm("Truncate", "Task"))
+            {
+                @Html.Hidden("archived", true)
+                <input type="submit" class="btn btn-block btn-warning" value="Remove archived tasks"/>
+            }
+        </div>
+    </div>
 </div>
 
 @section scripts {
     <script>
-        $('.toggler').on('toggle', function () {
-            var $checkbox = $(this);
-            $.ajax({
-                url: '@Url.Action("Update")',
-                method: 'POST',
-                data: {
-                    id: $checkbox.data('item'),
-                    archived: $checkbox.is(':checked')
-                }
+        $('.toggler').on('toggle',
+            function() {
+                var $checkbox = $(this);
+                $.ajax({
+                    url: '@Url.Action("Update")',
+                    method: 'POST',
+                    data: {
+                        id: $checkbox.data('item'),
+                        archived: $checkbox.is(':checked')
+                    }
+                });
             });
-        });
     </script>
 }

@@ -1,9 +1,8 @@
+using System;
+using System.Data.Entity;
+
 namespace MvcTodo.Models
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
     public class MyDbContext : DbContext
     {
         // Your context has been configured to use a 'SampleModel' connection string from your application's 
@@ -20,9 +19,9 @@ namespace MvcTodo.Models
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
     }
-    
+
     public class MySeeder : CreateDatabaseIfNotExists<MyDbContext>
     {
         protected override void Seed(MyDbContext context)
